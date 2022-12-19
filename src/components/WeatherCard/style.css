@@ -1,0 +1,21 @@
+.card {
+  width: 155px;
+  height: 372px;
+  padding: 10px 20px;
+}
+
+.card-button {
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+  height: 70px;
+  box-shadow: 1px 0px 11px 7px #459de0;
+}
+
+.day {
+  background-color: #4cacf6;
+}
+
+.night {
+  background-color: #1c4059;
+}
