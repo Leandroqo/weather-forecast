@@ -10,6 +10,7 @@ type status = "idle" | "pending" | "resolved" | "rejected";
 const Weather = () => {
   const [forecasts, setForecasts] = useState<Forecast[][]>([]);
   const [status, setStatus] = useState<status>("idle");
+  const [message, setMessage] = useState<string>("");
 
   const handleResult = (data: Forecast[]) => {
     let groupForecastsByDays: Forecast[][] = [];
@@ -20,19 +21,19 @@ const Weather = () => {
   };
 
   const doSearch = async (address: string) => {
-    try {
-      setStatus("pending");
-      const response = await fetch(
-        `http://localhost:3003/forecast?address=${address}`
-      );
-      const data: Forecast[] = await response.json();
+    setStatus("pending");
+    const response = await fetch(
+      `http://localhost:3003/forecast?address=${address}`
+    );
 
-      if (data) {
-        handleResult(data);
-        setStatus("resolved");
-      }
-    } catch (err) {
+    if (response.status === 500) {
+      const data: { error: string } = await response.json();
+      setMessage(`[${data.error}] Something went wrong...`);
       setStatus("rejected");
+    } else {
+      const data: Forecast[] = await response.json();
+      handleResult(data as Forecast[]);
+      setStatus("resolved");
     }
   };
 
@@ -45,7 +46,7 @@ const Weather = () => {
           forecasts.map((forecast: Forecast[]) => (
             <WeatherCard forecast={forecast} />
           ))}
-        {status === "rejected" && <span>Something went wrong...</span>}
+        {status === "rejected" && <span>{message}</span>}
       </div>
     </div>
   );
