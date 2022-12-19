@@ -1,10 +1,27 @@
+import { FormEvent, useState } from "react";
 import "./style.css";
 
-const Search = () => {
+type SearchProps = {
+  onEnter: (search: string) => void;
+};
+
+const Search = ({ onEnter }: SearchProps) => {
+  const [search, setSearch] = useState<string>("");
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onEnter(search);
+  };
+
   return (
-    <div className="flex">
-      <input className="search" type="search" />
-    </div>
+    <form className="flex" onSubmit={onSubmit}>
+      <input
+        className="search"
+        type="search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </form>
   );
 };
 

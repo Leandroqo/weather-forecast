@@ -1,29 +1,39 @@
 import "./style.css";
-import image from "../../assets/images/MostlyClear.png";
 
-const WeatherCard = () => {
+export type Forecast = {
+  name: string;
+  icon: string;
+  shortForecast: string;
+  temperature: number;
+  temperatureUnit: string;
+};
+
+type WeatherCardProps = {
+  forecast: Forecast[];
+};
+
+const WeatherCard = ({ forecast }: WeatherCardProps) => {
   return (
-    <div className="card day">
-      <h2>Sunday</h2>
-      <img src={image} width="100%" />
-      <h4 className="text-center">Mostly cloud</h4>
-      <div className="flex y20">
-        <h3 className="f-large">22</h3>
-        <h3>°F</h3>
-      </div>
-      <div className="flex space-arround">
-        <div className="card-button radius align-center day">
-          <img src={image} width="50" />
+    <div className="card">
+      <div className="flex">
+        <div className="flex card-item">
+          <img src={forecast[0].icon} className="card-image" />
           <div>
-            <span>22</span>
-            <span>°F</span>
+            <h1>{forecast[0].name}</h1>
+            <h3 className="card-shortForecast">{forecast[0].shortForecast}</h3>
+            <h2>
+              {forecast[0].temperature} º{forecast[0].temperatureUnit}
+            </h2>
           </div>
         </div>
-        <div className="card-button radius align-center night">
-          <img src={image} width="50" />
+        <div className="flex card-item">
+          <img src={forecast[1].icon} className="card-image" />
           <div>
-            <span>22</span>
-            <span>°F</span>
+            <h1>{forecast[1].name}</h1>
+            <h3 className="card-shortForecast">{forecast[1].shortForecast}</h3>
+            <h2>
+              {forecast[1].temperature} º{forecast[1].temperatureUnit}
+            </h2>
           </div>
         </div>
       </div>
