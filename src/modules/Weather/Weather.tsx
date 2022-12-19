@@ -1,9 +1,7 @@
 import { useState } from "react";
 
-import WeatherCard, { Forecast } from "./components/WeatherCard";
-import Search from "./components/Search";
-
-import "./App.css";
+import WeatherCard, { Forecast } from "components/WeatherCard";
+import Search from "components/Search";
 
 type status = "idle" | "pending" | "resolved" | "rejected";
 

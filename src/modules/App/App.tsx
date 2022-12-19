@@ -1,5 +1,5 @@
 import "./App.css";
-import Weather from "./Weather";
+import Weather from "modules/Weather/Weather";
 
 const App = () => {
   return (
