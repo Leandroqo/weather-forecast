@@ -19,6 +19,7 @@ const Search = ({ onEnter }: SearchProps) => {
         className="search"
         type="search"
         value={search}
+        data-testid="search-input"
         onChange={(e) => setSearch(e.target.value)}
       />
     </form>

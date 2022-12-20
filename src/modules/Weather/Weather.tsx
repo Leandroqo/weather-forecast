@@ -39,10 +39,15 @@ const Weather = () => {
     <div>
       <Search onEnter={doSearch} />
       <div>
+        {status === "idle" && (
+          <h1 className="text-center">
+            Type an address to see the weather forecast for the next seven days
+          </h1>
+        )}
         {status === "pending" && <h1 className="text-center">loading...</h1>}
         {status === "resolved" &&
           forecasts.map((forecast: Forecast[]) => (
-            <WeatherCard forecast={forecast} />
+            <WeatherCard forecast={forecast} key={forecast[0].name} />
           ))}
         {status === "rejected" && <h1 className="text-center">{message}</h1>}
       </div>

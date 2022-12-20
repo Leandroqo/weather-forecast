@@ -17,7 +17,11 @@ const WeatherCard = ({ forecast }: WeatherCardProps) => {
     <div className="card">
       <div className="flex">
         <div className="flex card-item">
-          <img src={forecast[0].icon} className="card-image" />
+          <img
+            src={forecast[0].icon}
+            className="card-image"
+            alt={forecast[0].shortForecast}
+          />
           <div>
             <h1>{forecast[0].name}</h1>
             <h3 className="card-shortForecast">{forecast[0].shortForecast}</h3>
@@ -27,7 +31,11 @@ const WeatherCard = ({ forecast }: WeatherCardProps) => {
           </div>
         </div>
         <div className="flex card-item">
-          <img src={forecast[1].icon} className="card-image" />
+          <img
+            src={forecast[1].icon}
+            className="card-image"
+            alt={forecast[1].shortForecast}
+          />
           <div>
             <h1>{forecast[1].name}</h1>
             <h3 className="card-shortForecast">{forecast[1].shortForecast}</h3>
